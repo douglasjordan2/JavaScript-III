@@ -140,5 +140,57 @@ Humanoid.prototype.greet = function() {
 
   // Stretch task: 
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function. 
+
+  const villain = new Humanoid({
+    createdAt: new Date(),
+    dimensions: {
+      length: 50,
+      width: 10,
+      height: 12,
+    },
+    healthPoints: 100,
+    name: 'dragon',
+    team: 'Boss',
+    weapons: [
+      'Talons',
+      'Fire Breath',
+      'Tail Whip'
+    ],
+    language: 'Latin'
+  });
+
+  const hero = new Humanoid({
+    createdAt: new Date()
+    dimensions: {
+      length: 1,
+      width: 1.5,
+      height: 2.5,
+    },
+    healthPoints: 30,
+    name: "Kung Fury",
+    team: "Miami-Dade PD",
+    weapons: [
+      "Police Issue Magnum Revolver",
+      "Buddy Cop Backup",
+      "Kung Fury",
+    ],
+    language: "80s Cop"
+  })
+
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+  hero.prototype.attack = function() {
+    villain.healthPoints -= Math.floor(Math.random());
+    if(villain.healthPoints <= 0) {
+      alert(`${villain.name} has been defeated by ${this.name}`)
+    }
+  }
+
+
+  villain.prototype.attack = function() {
+    hero.healthPoints -= Math.floor(Math.random());
+    if(hero.healthPoints <= 0) {
+      alert(`${hero.name} has been defeated by ${this.name}`)
+    }
+  }
